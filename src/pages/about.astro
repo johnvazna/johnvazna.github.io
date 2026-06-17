@@ -1,0 +1,26 @@
+---
+import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="Sobre mí"
+	description="Quién soy y de qué trata este blog."
+	pubDate={new Date('June 17 2026')}
+	heroImage={AboutHeroImage}
+>
+	<p>
+		¡Hola! Soy Jonathan Vázquez, desarrollador de software. En este espacio escribo sobre
+		tecnología, los proyectos en los que trabajo y lo que voy aprendiendo en el camino.
+	</p>
+
+	<p>
+		Este es un texto de ejemplo: edítalo en <code>src/pages/about.astro</code> para contar tu
+		historia — en qué tecnologías trabajas, qué te interesa y qué tipo de oportunidades buscas.
+	</p>
+
+	<p>
+		Puedes encontrarme en
+		<a href="https://github.com/johnvazna" target="_blank">GitHub</a>.
+	</p>
+</Layout>
