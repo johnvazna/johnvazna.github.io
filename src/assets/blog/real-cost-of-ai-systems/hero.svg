@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+	<title id="title">AI system cost observability</title>
+	<desc id="desc">A restrained technical dashboard showing token budget, retries, model routing, and observability.</desc>
+	<rect width="1200" height="675" fill="#ffffff"/>
+	<rect x="130" y="100" width="940" height="475" rx="8" fill="#f8f7f5" stroke="#111" stroke-width="3"/>
+	<g fill="#fff" stroke="#111" stroke-width="3">
+		<rect x="190" y="168" width="260" height="120" rx="8"/>
+		<rect x="475" y="168" width="260" height="120" rx="8"/>
+		<rect x="760" y="168" width="250" height="120" rx="8"/>
+		<rect x="190" y="355" width="820" height="120" rx="8"/>
+	</g>
+	<g fill="#111" font-family="Nunito, Arial, sans-serif" font-size="32" font-weight="800">
+		<text x="234" y="224">Tokens</text>
+		<text x="520" y="224">Routing</text>
+		<text x="807" y="224">Retries</text>
+		<text x="234" y="413">Observability</text>
+	</g>
+	<g fill="#444240" font-family="Courier New, monospace" font-size="23">
+		<text x="235" y="258">budget: 8k</text>
+		<text x="520" y="258">small → large</text>
+		<text x="807" y="258">max: 2</text>
+		<text x="235" y="449">cost by workflow · tenant · model · tool</text>
+	</g>
+	<g stroke="#4e8d86" stroke-width="5" stroke-linecap="round" fill="none">
+		<path d="M230 517h120"/>
+		<path d="M390 517h75"/>
+		<path d="M505 517h165"/>
+		<path d="M710 517h82"/>
+		<path d="M832 517h128"/>
+	</g>
+	<circle cx="970" cy="517" r="12" fill="#4e8d86"/>
+</svg>

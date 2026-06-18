@@ -31,8 +31,10 @@ Every blog post must include:
 
 Optional fields:
 
+- `seoTitle`: longer search and social title used in page metadata.
 - `updatedDate`: last meaningful update date.
 - `heroImage`: local promotional image imported through frontmatter.
+- `tags`: searchable topic labels used for metadata and blog navigation.
 
 The current schema is defined in `src/content.config.ts`.
 
@@ -60,7 +62,7 @@ src/assets/blog/my-post-slug/hero.webp
 Frontmatter example:
 
 ```yaml
-heroImage: '../../assets/blog/my-post-slug/hero.webp'
+heroImage: '../../assets/blog/my-post-slug/hero.png'
 ```
 
 Image guidance:
@@ -130,10 +132,15 @@ Copy this template into a new file under `src/content/blog/` and replace the def
 ````md
 ---
 title: 'Post title goes here'
+seoTitle: 'Longer SEO title with primary keywords goes here'
 description: 'One or two sentences that summarize the post for previews, RSS, and SEO.'
 pubDate: 'Jun 18 2026'
 updatedDate: 'Jun 18 2026'
-heroImage: '../../assets/blog/post-title-goes-here/hero.webp'
+heroImage: '../../assets/blog/post-title-goes-here/hero.png'
+tags:
+  - Primary topic
+  - Secondary topic
+  - Technology
 ---
 
 Opening paragraph that explains the context and why this topic matters.
@@ -178,9 +185,12 @@ Before publishing a post:
 - Confirm the image folder name matches the post slug.
 - Confirm required frontmatter is present.
 - Confirm dates are valid and intentional.
+- Confirm `title` is concise enough for the UI.
+- Confirm `seoTitle`, when present, includes useful search keywords without making the visible title too long.
 - Confirm `description` is useful for previews and metadata.
 - Confirm `heroImage` exists if provided and points to the matching post image folder.
 - Confirm `heroImage` is suitable for social sharing previews.
+- Confirm `tags` are specific, accurate, and not overloaded.
 - Confirm all images in the post folder are referenced by the post, or are intentionally reserved for that post.
 - Confirm the post does not reference another post's image folder unless the reuse is intentional.
 - Confirm headings are structured and readable.

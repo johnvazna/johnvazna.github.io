@@ -89,4 +89,16 @@ import HeaderLink from './HeaderLink.astro';
 		transform: scaleX(1);
 		background: #111;
 	}
+	@media (max-width: 720px) {
+		nav {
+			width: min(1200px, 100% - 2em);
+		}
+		.internal-links {
+			gap: 0.45rem;
+		}
+		.internal-links a {
+			font-size: 0.78rem;
+			padding-inline: 0.25em;
+		}
+	}
 </style>

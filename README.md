@@ -35,6 +35,8 @@ The site is designed as a lightweight technical space for writing, project notes
 ├── astro.config.mjs
 ├── AGENTS.md
 ├── FRONT.md
+├── POST.md
+├── PROJECT.md
 ├── package.json
 └── README.md
 ```
@@ -48,8 +50,13 @@ Blog posts live in `src/content/blog` and require:
 - `title`
 - `description`
 - `pubDate`
-- optional `updatedDate`
-- optional `heroImage`
+
+Blog post optional fields:
+
+- `seoTitle`
+- `updatedDate`
+- `heroImage`
+- `tags`
 
 Project writeups live in `src/content/projects` and require:
 

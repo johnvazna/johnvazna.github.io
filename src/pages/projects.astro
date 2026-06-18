@@ -71,10 +71,9 @@ const getToolClass = (tool: string) => `tool-${tool.toLowerCase().replace(/[^a-z
 
 <style>
 	.projects-page {
-		height: 100vh;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
 	}
 	main {
 		flex: 1 1 auto;
@@ -85,7 +84,8 @@ const getToolClass = (tool: string) => `tool-${tool.toLowerCase().replace(/[^a-z
 		padding: 1.2em 0 1.6em;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		/* "safe" evita que el centrado recorte el contenido cuando no cabe */
+		justify-content: safe center;
 		animation: fade-up 0.5s ease both;
 	}
 	.page-head {

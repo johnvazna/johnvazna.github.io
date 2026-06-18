@@ -11,11 +11,13 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	tags?: string[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, tags = [] } = Astro.props;
+const keywords = tags.join(', ');
 ---
 
 <!-- Global Metadata -->
@@ -43,6 +45,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -50,6 +53,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image.src, Astro.url)} />
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />

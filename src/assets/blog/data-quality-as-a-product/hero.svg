@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+	<title id="title">Data quality contract pipeline</title>
+	<desc id="desc">A technical pipeline showing raw data, contract validation, trusted output, and monitoring.</desc>
+	<rect width="1200" height="675" fill="#ffffff"/>
+	<g fill="none" stroke="#111" stroke-width="3">
+		<rect x="110" y="188" width="220" height="110" rx="8"/>
+		<rect x="490" y="188" width="220" height="110" rx="8"/>
+		<rect x="870" y="188" width="220" height="110" rx="8"/>
+		<rect x="300" y="420" width="600" height="92" rx="8"/>
+	</g>
+	<g stroke="#4e8d86" stroke-width="5" stroke-linecap="round" fill="none">
+		<path d="M330 243h160"/>
+		<path d="M710 243h160"/>
+		<path d="M600 298v122"/>
+	</g>
+	<g fill="#111" font-family="Nunito, Arial, sans-serif" font-size="34" font-weight="800">
+		<text x="157" y="253">Raw</text>
+		<text x="533" y="253">Contract</text>
+		<text x="918" y="253">Trusted</text>
+		<text x="399" y="477">Freshness · Schema · Rules</text>
+	</g>
+	<g fill="#444240" font-family="Courier New, monospace" font-size="22">
+		<text x="145" y="335">ingestion</text>
+		<text x="515" y="335">validation</text>
+		<text x="924" y="335">publish</text>
+	</g>
+	<circle cx="600" cy="243" r="36" fill="#fff" stroke="#4e8d86" stroke-width="5"/>
+	<path d="M584 243l11 12 24-28" fill="none" stroke="#4e8d86" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
