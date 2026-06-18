@@ -60,9 +60,12 @@ const skills = [
 	'CI/CD',
 	'Python',
 	'Data Pipelines',
-	'AI Readiness',
+	'AI Harnesses',
+	'AI Automation',
 	'Node.js',
 ];
+
+const getSkillClass = (skill: string) => `skill-${skill.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
 const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - Conversational'];
 ---
@@ -132,7 +135,8 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 							I build backend systems where APIs, services, and data flow are designed
 							together. That includes REST and GraphQL APIs with Spring Boot, JAX-RS and
 							Micronaut, Python services with FastAPI, and the validation layers that make
-							data reliable enough for analytics, automation, and AI-ready workflows.
+							data reliable enough for analytics and automation — including AI harnesses
+							and process automation that put models to work in real workflows.
 						</p>
 					</div>
 
@@ -152,7 +156,7 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 					<div>
 						<p class="eyebrow">Skills</p>
 						<ul class="pill-list">
-							{skills.map((skill) => <li>{skill}</li>)}
+							{skills.map((skill) => <li class={getSkillClass(skill)}>{skill}</li>)}
 						</ul>
 					</div>
 
@@ -179,8 +183,14 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 				<section class="contact" aria-label="Contact">
 					<p>
 						For backend, mobile, or data-aware product work, you can reach me at
-						<a href="mailto:johnvazna@gmail.com">johnvazna@gmail.com</a> or see my work on
-						<a href="https://github.com/johnvazna" target="_blank" rel="noreferrer">GitHub</a>.
+						<a href="mailto:johnvazna@gmail.com">johnvazna@gmail.com</a>, see my work on
+						<a href="https://github.com/johnvazna" target="_blank" rel="noreferrer">GitHub</a>, or
+						connect on
+						<a
+							href="https://www.linkedin.com/in/jonathan-vazquez-2501/"
+							target="_blank"
+							rel="noreferrer">LinkedIn</a
+						>.
 					</p>
 				</section>
 			</main>
@@ -369,14 +379,74 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 	.pill-list li,
 	.language-list li {
 		display: inline-flex;
-		padding: 0.18rem 0.58rem;
-		border: 1px solid #111;
+		align-items: center;
+		justify-content: center;
+		min-height: 1.65rem;
+		padding: 0.18rem 0.62rem;
+		border: 1px solid var(--pill-border, #111);
 		border-radius: 999px;
-		color: #111;
+		background: var(--pill-bg, #fff);
+		color: var(--pill-text, #111);
 		font-family: var(--font-typewriter), ui-monospace, monospace;
 		font-size: 0.76rem;
 		font-weight: 700;
-		line-height: 1.45;
+		line-height: 1;
+		text-align: center;
+	}
+	.pill-list .skill-java,
+	.pill-list .skill-kotlin,
+	.pill-list .skill-spring-boot,
+	.pill-list .skill-jax-rs,
+	.pill-list .skill-micronaut {
+		--pill-bg: #fff0ec;
+		--pill-border: #e46f50;
+		--pill-text: #8a2f1e;
+	}
+	.pill-list .skill-swift,
+	.pill-list .skill-ios {
+		--pill-bg: #fff1e8;
+		--pill-border: #ff7a1a;
+		--pill-text: #9b3d00;
+	}
+	.pill-list .skill-dart,
+	.pill-list .skill-react-native,
+	.pill-list .skill-android {
+		--pill-bg: #eaf8ff;
+		--pill-border: #2aa7df;
+		--pill-text: #126082;
+	}
+	.pill-list .skill-fastapi,
+	.pill-list .skill-python {
+		--pill-bg: #fff6d7;
+		--pill-border: #3776ab;
+		--pill-text: #2b5f8a;
+	}
+	.pill-list .skill-rest-apis,
+	.pill-list .skill-graphql,
+	.pill-list .skill-microservices {
+		--pill-bg: #f4ecff;
+		--pill-border: #7b3ff2;
+		--pill-text: #4a208f;
+	}
+	.pill-list .skill-postgresql,
+	.pill-list .skill-data-pipelines,
+	.pill-list .skill-ai-harnesses,
+	.pill-list .skill-ai-automation {
+		--pill-bg: #eaf8f1;
+		--pill-border: #1f9d68;
+		--pill-text: #146246;
+	}
+	.pill-list .skill-aws,
+	.pill-list .skill-docker,
+	.pill-list .skill-ci-cd {
+		--pill-bg: #fff7e6;
+		--pill-border: #f59e0b;
+		--pill-text: #8a5600;
+	}
+	.pill-list .skill-node-js {
+		--pill-bg: #f0f8e8;
+		--pill-border: #68a063;
+		--pill-text: #356332;
 	}
 	.cv-download {
 		display: grid;
