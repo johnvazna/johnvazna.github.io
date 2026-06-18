@@ -1,26 +1,509 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import { Image } from 'astro:assets';
+import AvatarImage from '../assets/avatar.png';
+import AboutPortrait from '../assets/about-portrait.svg';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const milestones = [
+	{
+		year: '2025',
+		title: 'Restaurant POS at Pacto',
+		description:
+			'Led mobile product development for a restaurant POS platform, applying SOLID and Clean Architecture while integrating AWS GraphQL, REST and DataStore for reliable offline-capable sync.',
+	},
+	{
+		year: '2023',
+		title: 'User Understanding at Pinterest',
+		description:
+			'Built native in-app survey tools that helped product teams measure user behavior and satisfaction at scale across mobile experiences.',
+	},
+	{
+		year: '2021',
+		title: 'Banking systems at Raven',
+		description:
+			'Built backend services and RESTful APIs with Java, Spring Boot and JAX-RS, including secure data handling and CI/CD pipelines for repeatable banking releases.',
+	},
+	{
+		year: '2018',
+		title: 'Backend platforms and mobile products',
+		description:
+			'Built Java microservices, Python data-processing services and mobile learning products, including migrations from Java to Kotlin and production releases.',
+	},
+	{
+		year: '2017',
+		title: 'Consulting foundations',
+		description:
+			'Started building intranet systems, integration services and internal tooling with Java, JAX-RS, Spring and Vert.x.',
+	},
+];
+
+const skills = [
+	'Java',
+	'Kotlin',
+	'Swift',
+	'Dart',
+	'React Native',
+	'Spring Boot',
+	'FastAPI',
+	'Microservices',
+	'JAX-RS',
+	'Micronaut',
+	'REST APIs',
+	'GraphQL',
+	'PostgreSQL',
+	'AWS',
+	'Android',
+	'iOS',
+	'Docker',
+	'CI/CD',
+	'Python',
+	'Data Pipelines',
+	'AI Readiness',
+	'Node.js',
+];
+
+const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - Conversational'];
 ---
 
-<Layout
-	title="Sobre mí"
-	description="Quién soy y de qué trata este blog."
-	pubDate={new Date('June 17 2026')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		¡Hola! Soy Jonathan Vázquez, desarrollador de software. En este espacio escribo sobre
-		tecnología, los proyectos en los que trabajo y lo que voy aprendiendo en el camino.
-	</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`About · ${SITE_TITLE}`}
+			description="Senior software engineer focused on backend systems, mobile products, APIs, microservices, and data-aware engineering."
+			image={AvatarImage}
+		/>
+	</head>
+	<body>
+		<div class="about-page">
+			<Header />
+			<main>
+				<section class="hero">
+					<div class="hero-visual">
+						<Image
+							class="portrait"
+							width={720}
+							height={720}
+							src={AboutPortrait}
+							alt="Illustration of Jonathan Vázquez"
+						/>
+					</div>
+					<div class="hero-copy">
+						<div>
+							<p class="eyebrow">About Me</p>
+							<h1>8+ years building backend systems and mobile products.</h1>
+						</div>
+						<p class="intro">
+							I am a senior software engineer who likes building the parts people depend
+							on: backend systems, mobile products, APIs, and microservices. I care about
+							clear architecture, calm delivery, and codebases that are easy to understand,
+							operate, and keep evolving.
+						</p>
+					</div>
+				</section>
 
-	<p>
-		Este es un texto de ejemplo: edítalo en <code>src/pages/about.astro</code> para contar tu
-		historia — en qué tecnologías trabajas, qué te interesa y qué tipo de oportunidades buscas.
-	</p>
+				<section class="story" aria-labelledby="story-title">
+					<div class="section-head">
+						<p class="eyebrow">Story</p>
+						<h2 id="story-title">A career shaped by backend platforms, mobile products, and data flow.</h2>
+					</div>
 
-	<p>
-		Puedes encontrarme en
-		<a href="https://github.com/johnvazna" target="_blank">GitHub</a>.
-	</p>
-</Layout>
+					<div class="timeline">
+						{
+							milestones.map((item, index) => (
+								<article class="milestone" style={`--step: ${index};`}>
+									<span class="year">{item.year}</span>
+									<div class="dot" aria-hidden="true" />
+									<h3>{item.title}</h3>
+									<p>{item.description}</p>
+								</article>
+							))
+						}
+					</div>
+				</section>
+
+				<section class="details" aria-label="Technical details">
+					<div class="detail-block">
+						<p class="eyebrow">Backend</p>
+						<h2>APIs, microservices, and production delivery.</h2>
+						<p>
+							I build backend systems where APIs, services, and data flow are designed
+							together. That includes REST and GraphQL APIs with Spring Boot, JAX-RS and
+							Micronaut, Python services with FastAPI, and the validation layers that make
+							data reliable enough for analytics, automation, and AI-ready workflows.
+						</p>
+					</div>
+
+					<div class="detail-block">
+						<p class="eyebrow">Mobile</p>
+						<h2>Mobile products shipped end to end.</h2>
+						<p>
+							I have led mobile projects from architecture and offline-capable sync to
+							security, encryption, releases and product collaboration. My strongest
+							hands-on background is Android with Java and Kotlin, and I also understand
+							the iOS patterns teams need to keep cross-platform mobile experiences aligned.
+						</p>
+					</div>
+				</section>
+
+				<section class="tooling" aria-label="Skills and languages">
+					<div>
+						<p class="eyebrow">Skills</p>
+						<ul class="pill-list">
+							{skills.map((skill) => <li>{skill}</li>)}
+						</ul>
+					</div>
+
+					<div>
+						<p class="eyebrow">Languages</p>
+						<ul class="language-list">
+							{languages.map((language) => <li>{language}</li>)}
+						</ul>
+					</div>
+				</section>
+
+				<section class="cv-download" aria-label="Download CV">
+					<div>
+						<p class="eyebrow">CV</p>
+						<h2>The short version.</h2>
+					</div>
+					<p>
+						Download my CV for a concise overview of my experience, technical stack,
+						companies, and languages.
+					</p>
+					<a class="download-link" href="/jonathan-vazquez-cv.pdf" download>Download CV</a>
+				</section>
+
+				<section class="contact" aria-label="Contact">
+					<p>
+						For backend, mobile, or data-aware product work, you can reach me at
+						<a href="mailto:johnvazna@gmail.com">johnvazna@gmail.com</a> or see my work on
+						<a href="https://github.com/johnvazna" target="_blank" rel="noreferrer">GitHub</a>.
+					</p>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
+
+<style>
+	.about-page {
+		min-height: 100vh;
+		background: #fff;
+	}
+	main {
+		width: min(1200px, 100% - 3em);
+		max-width: none;
+		margin-inline: auto;
+		padding: clamp(4rem, 8vh, 6rem) 0 6rem;
+		animation: about-in 0.5s ease both;
+	}
+	.hero {
+		display: grid;
+		grid-template-columns: minmax(340px, 0.9fr) minmax(440px, 1.1fr);
+		gap: clamp(2.5rem, 5vw, 5.5rem);
+		align-items: center;
+		min-height: 58vh;
+	}
+	.hero-visual {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	.portrait {
+		width: min(112%, 36rem);
+		height: auto;
+		object-fit: contain;
+	}
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(2rem, 5vh, 3.5rem);
+		align-self: center;
+	}
+	.eyebrow {
+		margin: 0 0 0.8rem;
+		color: #2445ff;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: 0.75rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+	}
+	.hero h1 {
+		max-width: 14ch;
+		margin: 0;
+		color: #111;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(2.4rem, 4.8vw, 4.7rem);
+		font-weight: 700;
+		line-height: 1.04;
+		letter-spacing: 0;
+	}
+	.intro {
+		max-width: 66ch;
+		margin: 0;
+		color: #222;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.95rem;
+		line-height: 1.85;
+	}
+	.story {
+		margin-top: clamp(5rem, 12vh, 8rem);
+	}
+	.section-head {
+		text-align: center;
+	}
+	.section-head h2 {
+		max-width: 16ch;
+		margin: 0 auto;
+		color: #111;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(2.4rem, 5vw, 4.4rem);
+		font-weight: 700;
+		line-height: 1.08;
+		letter-spacing: 0;
+	}
+	.timeline {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: clamp(0.9rem, 1.5vw, 1.25rem);
+		margin-top: 4rem;
+		position: relative;
+	}
+	.timeline::before {
+		content: '';
+		position: absolute;
+		top: 0.42rem;
+		left: 0;
+		right: 0;
+		border-top: 1px dashed #d8d5cf;
+	}
+	.milestone {
+		position: relative;
+		display: grid;
+		grid-template-rows: 2.5rem 4.4rem 1fr;
+		min-height: 17.25rem;
+		padding: 2.35rem 1rem 0 0;
+	}
+	.dot {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 999px;
+		background: #d8d5cf;
+	}
+	.milestone:first-child .dot {
+		background: #2445ff;
+	}
+	.year {
+		display: block;
+		margin: 0;
+		color: #777;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: 1rem;
+		font-weight: 800;
+	}
+	.milestone:first-child .year {
+		color: #2445ff;
+	}
+	.milestone h3 {
+		display: flex;
+		align-items: flex-start;
+		margin: 0;
+		color: #111;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+		font-weight: 800;
+		line-height: 1.15;
+	}
+	.milestone p {
+		margin: 0;
+		color: #444240;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.74rem;
+		line-height: 1.62;
+	}
+	.details {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(3rem, 8vw, 7rem);
+		margin-top: clamp(5rem, 12vh, 8rem);
+	}
+	.detail-block h2 {
+		max-width: 12ch;
+		margin: 0 0 1.2rem;
+		color: #111;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(1.9rem, 3.5vw, 3.1rem);
+		font-weight: 700;
+		line-height: 1.08;
+	}
+	.detail-block p:last-child {
+		max-width: 54ch;
+		margin: 0;
+		color: #333;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.88rem;
+		line-height: 1.8;
+	}
+	.tooling {
+		display: grid;
+		grid-template-columns: 1.4fr 0.8fr;
+		gap: clamp(3rem, 8vw, 7rem);
+		margin-top: 5rem;
+	}
+	.pill-list,
+	.language-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.pill-list li,
+	.language-list li {
+		display: inline-flex;
+		padding: 0.18rem 0.58rem;
+		border: 1px solid #111;
+		border-radius: 999px;
+		color: #111;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.76rem;
+		font-weight: 700;
+		line-height: 1.45;
+	}
+	.cv-download {
+		display: grid;
+		grid-template-columns: minmax(220px, 0.75fr) minmax(320px, 1fr) auto;
+		gap: clamp(1.5rem, 4vw, 4rem);
+		align-items: center;
+		margin-top: 5rem;
+		padding: 2rem 0;
+		border-top: 1px solid #e6e4e1;
+		border-bottom: 1px solid #e6e4e1;
+	}
+	.cv-download h2 {
+		max-width: 10ch;
+		margin: 0;
+		color: #111;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+		font-weight: 700;
+		line-height: 1.06;
+		letter-spacing: 0;
+	}
+	.cv-download p:not(.eyebrow) {
+		max-width: 54ch;
+		margin: 0;
+		color: #333;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.86rem;
+		line-height: 1.75;
+	}
+	.download-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3.2rem;
+		padding: 0 1.4rem;
+		border: 2px solid #111;
+		border-radius: 999px;
+		background: #111;
+		color: #fff;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: 0.86rem;
+		font-weight: 800;
+		text-decoration: none;
+		white-space: nowrap;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+	.download-link:hover {
+		background: #fff;
+		color: #111;
+	}
+	.contact {
+		margin-top: 5rem;
+		padding-top: 2rem;
+		border-top: 1px solid #e6e4e1;
+	}
+	.contact p {
+		max-width: 70ch;
+		margin: 0;
+		color: #222;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.9rem;
+		line-height: 1.8;
+	}
+	.contact a {
+		color: #111;
+		font-weight: 700;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.18em;
+	}
+	@keyframes about-in {
+		from {
+			opacity: 0;
+			transform: translateY(14px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		main {
+			animation: none;
+		}
+	}
+	@media (max-width: 900px) {
+		.hero,
+		.details,
+		.tooling {
+			grid-template-columns: 1fr;
+		}
+		.hero {
+			gap: 2rem;
+			min-height: auto;
+		}
+		.portrait {
+			width: min(92vw, 30rem);
+		}
+		.hero h1,
+		.section-head h2 {
+			max-width: 12ch;
+		}
+		.cv-download {
+			grid-template-columns: 1fr;
+			align-items: flex-start;
+		}
+		.download-link {
+			width: fit-content;
+		}
+		.timeline {
+			grid-template-columns: 1fr;
+			border-top: 0;
+			border-left: 1px dashed #d8d5cf;
+			margin-left: 0.4rem;
+		}
+		.timeline::before {
+			display: none;
+		}
+		.milestone {
+			grid-template-rows: auto auto auto;
+			min-height: auto;
+			padding: 0 0 2.5rem 1.6rem;
+		}
+		.dot {
+			top: 0.15rem;
+			left: -0.43rem;
+		}
+	}
+</style>

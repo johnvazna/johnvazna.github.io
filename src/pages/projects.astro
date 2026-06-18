@@ -1,0 +1,268 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../consts';
+import jengaUrl from '../assets/jenga.svg?url';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0),
+);
+const entries = projects.map((project) => ({
+	title: project.data.title,
+	sub: project.data.description,
+	stack: project.data.stack,
+	href: `/projects/${project.id}/`,
+}));
+const getToolClass = (tool: string) => `tool-${tool.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Projects · ${SITE_TITLE}`} description="Things I have built." />
+	</head>
+	<body>
+		<div class="projects-page">
+			<Header />
+			<main>
+				<header class="page-head">
+					<h1>Projects</h1>
+					<p class="subtitle">
+						Things I have built — experiments, tools, and ideas that turn
+						into working software.
+					</p>
+				</header>
+
+				<div class="projects-grid">
+					<aside class="projects-left">
+						<img src={jengaUrl} alt="Jenga tower illustration" class="jenga-img" />
+					</aside>
+
+					<div class="projects-right">
+						<ol class="index">
+							{
+								entries.map((project, i) => (
+									<li>
+										<a href={project.href}>
+											<span class="num">({String(i + 1).padStart(2, '0')})</span>
+											<h2 class="entry-title">{project.title}</h2>
+											<p class="entry-sub">{project.sub}</p>
+											{
+												project.stack?.length && (
+													<ul class="entry-tools" aria-label="Tools used">
+														{project.stack.map((item) => (
+															<li class={getToolClass(item)}>{item}</li>
+														))}
+													</ul>
+												)
+											}
+										</a>
+									</li>
+								))
+							}
+						</ol>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
+
+<style>
+	.projects-page {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+	main {
+		flex: 1 1 auto;
+		min-height: 0;
+		width: min(1200px, 100% - 3em);
+		max-width: none;
+		margin-inline: auto;
+		padding: 1.2em 0 1.6em;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		animation: fade-up 0.5s ease both;
+	}
+	.page-head {
+		margin-bottom: 2rem;
+		position: relative;
+		top: 4.5rem;
+	}
+	.page-head h1 {
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+		font-weight: 800;
+		letter-spacing: 0;
+		margin: 0 0 0.35rem;
+		color: #111;
+	}
+	.subtitle {
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: #444240;
+		margin: 0;
+		max-width: 52ch;
+	}
+	.projects-grid {
+		display: grid;
+		grid-template-columns: 1fr 500px;
+		gap: 3.5rem;
+		align-items: center;
+	}
+	.projects-left {
+		align-self: center;
+	}
+	.projects-right {
+		position: relative;
+		top: -3.5rem;
+	}
+	.jenga-img {
+		width: 100%;
+		max-width: 480px;
+		height: auto;
+		object-fit: contain;
+		display: block;
+		margin-left: -8%;
+		margin-right: auto;
+	}
+	.index {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		min-height: 24.5rem;
+	}
+	.index li {
+		border-top: 1px solid #e6e4e1;
+	}
+	.index li:last-child {
+		border-bottom: 1px solid #e6e4e1;
+	}
+	.index a {
+		display: block;
+		padding: 0.9rem 0.2rem;
+		text-decoration: none;
+		color: #111;
+		transition: transform 0.25s ease;
+	}
+	.num {
+		display: block;
+		font-style: italic;
+		font-size: 0.72rem;
+		color: #b3afa9;
+		margin-bottom: 0.2rem;
+	}
+	.entry-title {
+		margin: 0 0 0.25rem;
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+		font-weight: 800;
+		letter-spacing: 0.005em;
+		line-height: 1.05;
+		color: #111;
+	}
+	.entry-sub {
+		margin: 0;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.78rem;
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 1.55;
+		color: #444240;
+	}
+	.entry-tools {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin: 0.85rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	.entry-tools li {
+		display: inline-flex;
+		padding: 0.12rem 0.45rem;
+		border: 1px solid var(--tool-border, #111);
+		border-radius: 999px;
+		background: var(--tool-bg, #fff);
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.72rem;
+		font-weight: 700;
+		line-height: 1.45;
+		color: var(--tool-text, #111);
+	}
+	.entry-tools .tool-astro {
+		--tool-bg: #f4ecff;
+		--tool-border: #7b3ff2;
+		--tool-text: #4a208f;
+	}
+	.entry-tools .tool-typescript {
+		--tool-bg: #eaf3ff;
+		--tool-border: #3178c6;
+		--tool-text: #174b82;
+	}
+	.entry-tools .tool-markdown {
+		--tool-bg: #f3f5f7;
+		--tool-border: #6b7280;
+		--tool-text: #2f3640;
+	}
+	.entry-tools .tool-python {
+		--tool-bg: #fff6d7;
+		--tool-border: #3776ab;
+		--tool-text: #2b5f8a;
+	}
+	.entry-tools .tool-sql {
+		--tool-bg: #eaf8f1;
+		--tool-border: #1f9d68;
+		--tool-text: #146246;
+	}
+	.entry-tools .tool-databricks {
+		--tool-bg: #fff0ec;
+		--tool-border: #ff5f46;
+		--tool-text: #a83222;
+	}
+	.index a:hover {
+		transform: translateX(10px);
+	}
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(14px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		main {
+			animation: none;
+		}
+		.index a:hover {
+			transform: none;
+		}
+	}
+	@media (max-width: 720px) {
+		.projects-page {
+			height: auto;
+			min-height: 100vh;
+			overflow: visible;
+		}
+		main {
+			justify-content: flex-start;
+			padding: 1.5em 0 3em;
+		}
+		.projects-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.projects-left {
+			max-width: 300px;
+			margin-inline: auto;
+		}
+	}
+</style>

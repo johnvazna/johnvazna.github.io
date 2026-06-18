@@ -10,6 +10,21 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
+			provider: fontProviders.google(),
+			name: 'Courier Prime',
+			cssVariable: '--font-typewriter',
+			weights: [400, 700],
+			styles: ['normal', 'italic'],
+			fallbacks: ['ui-monospace', 'monospace'],
+		},
+		{
+			provider: fontProviders.google(),
+			name: 'Nunito',
+			cssVariable: '--font-nunito',
+			weights: [700, 800],
+			fallbacks: ['sans-serif'],
+		},
+		{
 			provider: fontProviders.local(),
 			name: 'Atkinson',
 			cssVariable: '--font-atkinson',

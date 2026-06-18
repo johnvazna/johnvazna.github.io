@@ -1,19 +1,19 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Despliega en cada push a la rama principal
+  # Deploy on every push to the main branch
   push:
     branches: [main]
-  # Permite lanzarlo manualmente desde la pestaña Actions
+  # Allow manual runs from the Actions tab
   workflow_dispatch:
 
-# Permisos que necesita el deploy de Pages
+# Permissions required for the Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Un solo deploy a la vez; no cancela uno en curso
+# Run one deployment at a time without canceling in-progress runs
 concurrency:
   group: pages
   cancel-in-progress: false

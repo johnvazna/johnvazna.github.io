@@ -1,49 +1,153 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import heroUrl from '../assets/hero.svg?url';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
+		<div class="home">
+			<Header />
+			<main class="hero">
+				<div class="hero-text">
+					<h1>I build software,<br />and write about it.</h1>
+					<p class="lead">
+						I'm a developer, and this is my space to think out loud. I
+						write about what I build, what I learn along the way, and the
+						mistakes that teach me more than the wins.
+					</p>
+					<a class="cta" href="/blog">Explore</a>
+				</div>
+
+				<div class="hero-media">
+					<img src={heroUrl} alt="Workspace illustration" class="hero-img" />
+				</div>
+			</main>
+		</div>
 	</body>
 </html>
+
+<style>
+	/* Single-screen layout without scroll on desktop */
+	.home {
+		height: 100vh;
+		background: #ffffff;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.hero {
+		flex: 1 1 auto;
+		min-height: 0;
+		width: min(1200px, 100% - 3em);
+		max-width: none;
+		margin-inline: auto;
+		padding: 0 0 2vh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+		animation: fade-up 0.5s ease both;
+	}
+
+	.hero-text h1 {
+		font-family: var(--font-nunito), sans-serif;
+		font-size: clamp(2.25rem, 5vw, 4rem);
+		font-weight: 700;
+		letter-spacing: 0;
+		line-height: 1.08;
+		margin-bottom: 1.5rem;
+		color: #111;
+	}
+
+	.lead {
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 0.85rem;
+		font-weight: 400;
+		line-height: 1.7;
+		letter-spacing: -0.01em;
+		color: #444240;
+		max-width: 46ch;
+		margin-bottom: 2.5rem;
+	}
+
+	.cta {
+		display: inline-block;
+		background: #111;
+		color: #FFFFFF;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 1rem;
+		padding: 1em 3em;
+		border-radius: 999px;
+		transition:
+			transform 0.15s ease,
+			background 0.15s ease;
+	}
+	.cta:hover {
+		background: #000;
+		color: #FFFFFF;
+		transform: translateY(-2px);
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(14px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero {
+			animation: none;
+		}
+	}
+
+	/* Image side */
+	.hero-media {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		min-height: 0;
+	}
+	.hero-img {
+		height: 88%;
+		width: auto;
+		max-width: 100%;
+		object-fit: contain;
+	}
+
+	/* Responsive single-column layout on mobile, with scrolling enabled */
+	@media (max-width: 720px) {
+		.home {
+			height: auto;
+			min-height: 100vh;
+			overflow: visible;
+		}
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			align-content: center;
+			padding: 1.5em 0 3em;
+		}
+		.hero-media {
+			order: -1;
+			height: auto;
+		}
+		.hero-img {
+			height: auto;
+			width: 240px;
+			max-width: 70vw;
+		}
+	}
+</style>
