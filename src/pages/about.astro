@@ -8,6 +8,12 @@ import { SITE_TITLE } from '../consts';
 
 const milestones = [
 	{
+		year: 'Now',
+		title: 'Banking systems at Raven',
+		description:
+			'Current role since 2021. Full-stack banking work: backend services and RESTful APIs (Java, Spring Boot, JAX-RS) plus Databricks data pipelines to process and validate banking data, with secure handling and CI/CD.',
+	},
+	{
 		year: '2025',
 		title: 'Restaurant POS at Pacto',
 		description:
@@ -18,12 +24,6 @@ const milestones = [
 		title: 'User Understanding at Pinterest',
 		description:
 			'Built native in-app survey tools that helped product teams measure user behavior and satisfaction at scale across mobile experiences.',
-	},
-	{
-		year: '2021',
-		title: 'Banking systems at Raven',
-		description:
-			'Built backend services and RESTful APIs with Java, Spring Boot and JAX-RS, plus Databricks data pipelines to process and validate banking data, with secure handling and CI/CD for repeatable releases.',
 	},
 	{
 		year: '2018',
@@ -236,7 +236,7 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 	}
 	.eyebrow {
 		margin: 0 0 0.8rem;
-		color: #2445ff;
+		color: #4e8d86;
 		font-family: var(--font-nunito), sans-serif;
 		font-size: 0.75rem;
 		font-weight: 800;
@@ -309,7 +309,7 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 		background: #d8d5cf;
 	}
 	.milestone:first-child .dot {
-		background: #2445ff;
+		background: #4e8d86;
 	}
 	.year {
 		display: block;
@@ -320,7 +320,7 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 		font-weight: 800;
 	}
 	.milestone:first-child .year {
-		color: #2445ff;
+		color: #4e8d86;
 	}
 	.milestone h3 {
 		display: flex;
@@ -483,27 +483,23 @@ const languages = ['English - Professional', 'Spanish - Native', 'Portuguese - C
 		line-height: 1.75;
 	}
 	.download-link {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 3.2rem;
-		padding: 0 1.4rem;
-		border: 2px solid #111;
-		border-radius: 999px;
+		display: inline-block;
 		background: #111;
 		color: #fff;
-		font-family: var(--font-nunito), sans-serif;
-		font-size: 0.86rem;
-		font-weight: 800;
 		text-decoration: none;
+		font-weight: 500;
+		font-size: 1rem;
+		padding: 1em 3em;
+		border-radius: 999px;
 		white-space: nowrap;
 		transition:
-			background 0.2s ease,
-			color 0.2s ease;
+			transform 0.15s ease,
+			background 0.15s ease;
 	}
 	.download-link:hover {
-		background: #fff;
-		color: #111;
+		background: #000;
+		color: #fff;
+		transform: translateY(-2px);
 	}
 	.contact {
 		margin-top: 5rem;
