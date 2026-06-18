@@ -1,63 +1,156 @@
-# Astro Starter Kit: Blog
+# Jonathan Vazquez Personal Site
 
-```sh
-npm create astro@latest -- --template blog
-```
+Personal portfolio and blog built with Astro and deployed to GitHub Pages.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The site is designed as a lightweight technical space for writing, project notes, career context, and engineering decisions. It should stay focused on static content, clear navigation, fast builds, and maintainable content contracts.
 
-Features:
+## Stack
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- Astro 6
+- TypeScript
+- Markdown and MDX content collections
+- Astro assets pipeline
+- RSS feed
+- Sitemap generation
+- GitHub Pages deployment
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 ├── public/
+│   ├── favicon.ico
+│   ├── favicon.svg
+│   └── jonathan-vazquez-cv.pdf
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+│   ├── assets/
+│   ├── components/
+│   ├── content/
+│   │   ├── blog/
+│   │   └── projects/
+│   ├── layouts/
+│   ├── pages/
+│   ├── consts.ts
+│   ├── content.config.ts
+│   └── styles/
 ├── astro.config.mjs
-├── README.md
+├── AGENTS.md
+├── FRONT.md
 ├── package.json
-└── tsconfig.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Content Model
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Content is managed through Astro content collections in `src/content.config.ts`.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Blog posts live in `src/content/blog` and require:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- `title`
+- `description`
+- `pubDate`
+- optional `updatedDate`
+- optional `heroImage`
 
-## 🧞 Commands
+Project writeups live in `src/content/projects` and require:
 
-All commands are run from the root of the project, from a terminal:
+- `title`
+- `description`
+- `promoImage`
+- `githubUrl`
+- optional `pubDate`
+- optional `stack`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Keep frontmatter valid and predictable. These schemas are the contract between Markdown content, generated routes, SEO metadata, RSS, and project/blog index pages.
 
-## 👀 Want to learn more?
+## Main Routes
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `/` - Home page
+- `/about` - Professional profile and contact context
+- `/blog` - Blog index
+- `/blog/[slug]` - Blog detail pages
+- `/projects` - Project index
+- `/projects/[slug]` - Project detail pages
+- `/rss.xml` - RSS feed
 
-## Credit
+## Design Rules
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Before changing UI, layout, typography, colors, buttons, animations, or responsive behavior, read `FRONT.md`.
+
+The current design direction is editorial, minimal, and content-first:
+
+- Wide `1200px` page containers for main views
+- White background with black text and restrained teal accents
+- `Nunito` for headings and UI labels
+- `Courier Prime` for descriptions, metadata, and content-heavy UI
+- Subtle transitions and reduced-motion support
+
+## Engineering Rules
+
+Before changing project behavior or integration flow, read `AGENTS.md`.
+
+Important project rules:
+
+- Stay within the personal-site context.
+- Do not introduce backend services, databases, pipelines, or infrastructure unless explicitly requested.
+- Raise a warning and ask for confirmation before changes that affect structure, routing, deployment, schemas, build behavior, or user-facing functionality.
+- Inspect branch and working tree state before staging, committing, merging, or integrating.
+- Do not merge into `main`, force-push, or rewrite shared history without explicit approval.
+
+## Development
+
+This project requires Node.js `>=22.12.0`.
+
+Install dependencies:
+
+```sh
+npm install
+```
+
+Start the local development server:
+
+```sh
+npm run dev
+```
+
+Build the static site:
+
+```sh
+npm run build
+```
+
+Preview the production build:
+
+```sh
+npm run preview
+```
+
+Run Astro CLI commands:
+
+```sh
+npm run astro -- --help
+```
+
+## Validation
+
+Before finishing code or content-contract changes, run:
+
+```sh
+npm run build
+```
+
+The build validates content schemas, generated routes, optimized assets, RSS output, and sitemap generation.
+
+If the local shell uses an older Node version, switch to a compatible Node runtime instead of changing project files only to satisfy the local environment.
+
+## Deployment
+
+Deployment is handled by GitHub Actions in `.github/workflows/deploy.yml`.
+
+The workflow:
+
+- Runs on pushes to `main`
+- Supports manual runs through `workflow_dispatch`
+- Uses `withastro/action@v3`
+- Deploys the static output to GitHub Pages
+
+Keep deployment changes scoped and review branch strategy before integrating anything into `main`.
