@@ -2,7 +2,7 @@
 title: 'Supabase with Hexagonal Architecture'
 seoTitle: 'Supabase with Hexagonal Architecture: Postgres, RLS, and Clean Data Boundaries'
 description: 'Supabase is strongest when treated as a Postgres application platform with clear domain boundaries, repositories, RLS, and schema ownership.'
-pubDate: 'Jun 16 2026'
+pubDate: 'Feb 11 2026'
 heroImage: '../../assets/blog/supabase-hexagonal-data-structures/hero.png'
 tags:
   - Supabase
@@ -41,7 +41,7 @@ const projects = await projectService.listWorkspaceProjects({
 
 The service can then decide whether this reads from a table, view, RPC function, or Edge Function. That decision belongs to the adapter layer, not every screen.
 
-## The Risk Of Table-Driven UI
+## The Risk of Table-Driven UI
 
 A table-driven UI often starts clean:
 
@@ -142,7 +142,7 @@ Edge Functions can own privileged orchestration:
 
 The UI should own interaction and presentation, not enforcement.
 
-## RLS Is A Boundary, Not A Feature Toggle
+## RLS Is a Boundary, Not a Feature Toggle
 
 Row Level Security is one of the most important parts of Supabase architecture. It should not be treated as something added at the end.
 
@@ -186,7 +186,7 @@ using (
 
 I would still add explicit filters in application queries for performance and clarity. RLS is the security boundary, not an excuse to query every row and let the database clean it up.
 
-## Views, RPC, And Read Models
+## Views, RPC, and Read Models
 
 Not every frontend read needs to map directly to a base table.
 
@@ -221,7 +221,7 @@ join public.workspace_members wm
 
 That view still needs a clear access model. If the view becomes public API for the app, treat it like a contract.
 
-## Data Structure As Product Design
+## Data Structure as Product Design
 
 Data modeling is product design. The schema decides what the product can express safely.
 
@@ -237,7 +237,7 @@ For Supabase, I would model around domain concepts, not UI components. A good sc
 
 If the schema only mirrors screens, it will break when the product changes. If the schema models the domain, the UI can evolve around it.
 
-## Testing The Boundary
+## Testing the Boundary
 
 A Supabase architecture should be tested at multiple levels:
 

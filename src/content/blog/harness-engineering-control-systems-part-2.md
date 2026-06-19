@@ -2,7 +2,7 @@
 title: 'Harness Engineering, Part 2'
 seoTitle: 'Harness Engineering for AI Agents, Part 2: Evals, Guardrails, and Failure Modes'
 description: 'Once an agent has a control layer, production quality depends on evals, traces, guardrails, failure handling, and release gates.'
-pubDate: 'Jun 18 2026 09:00'
+pubDate: 'May 13 2026'
 heroImage: '../../assets/blog/harness-engineering-control-systems-part-2/hero.png'
 tags:
   - AI agents

@@ -2,7 +2,7 @@
 title: 'The Real Cost of AI Systems'
 seoTitle: 'The Real Cost of AI Systems: Tokens, Observability, and Guardrails'
 description: 'AI cost control is an engineering problem involving token budgets, tracing, model routing, evaluation, caching, and operational limits.'
-pubDate: 'Jun 15 2026'
+pubDate: 'Jan 14 2026'
 heroImage: '../../assets/blog/real-cost-of-ai-systems/hero.png'
 tags:
   - AI engineering
@@ -17,7 +17,7 @@ If a backend service had unbounded database queries, untracked retries, and no p
 
 Cost control is not a finance problem after launch. It is an engineering problem during design.
 
-## Why AI Cost Becomes Hard To Control
+## Why AI Cost Becomes Hard to Control
 
 AI cost is easy to underestimate because prototypes are small. A few users, a few prompts, and a handful of successful demos do not reveal the real usage pattern.
 
@@ -33,7 +33,7 @@ The cost starts to change when:
 
 At that point, the bill is not surprising because the model is expensive. The bill is surprising because the system has no cost architecture.
 
-## Tokens Are A Production Resource
+## Tokens Are a Production Resource
 
 Tokens should be treated like CPU, memory, database connections, or queue throughput. They are finite resources consumed by a running system.
 
@@ -81,7 +81,7 @@ async function recordTokenUsage(event: TokenUsageEvent) {
 
 This gives cost a shape that engineering systems can reason about. You can aggregate it, alert on it, and compare it across releases.
 
-## Measure Cost By Workflow
+## Measure Cost by Workflow
 
 Provider-level billing is not enough. It tells you what you spent, but not why.
 
@@ -100,7 +100,7 @@ Without these dimensions, cost optimization becomes guesswork. A team might down
 
 The right question is not "how much did the provider charge?" The right question is "which product behavior created this cost?"
 
-## Tracing Is The Backbone
+## Tracing Is the Backbone
 
 A good AI trace should show:
 
@@ -118,7 +118,7 @@ This is not only for debugging. It is also for financial observability. If a sin
 
 When traces are missing, AI systems become opaque. You can see the final answer and the final cost, but not the path between them.
 
-## Budgets Should Be In The System
+## Budgets Should Be in the System
 
 Cost control should not rely on engineers remembering to keep prompts short.
 
@@ -252,7 +252,7 @@ function decideRetry(errorCode: string, attempt: number): RetryDecision {
 
 This keeps retry behavior intentional. It also prevents "one more try" from becoming an unbounded cost strategy.
 
-## Guardrails For Spend
+## Guardrails for Spend
 
 Spend guardrails should exist at multiple levels:
 

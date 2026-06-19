@@ -2,7 +2,7 @@
 title: 'Data Quality as a Product'
 seoTitle: 'Data Quality as a Product: Contracts, Validation, and Pipeline Reliability'
 description: 'Reliable pipelines need explicit data contracts, validation layers, observability, and ownership instead of ad hoc checks after something breaks.'
-pubDate: 'Jun 17 2026'
+pubDate: 'Mar 18 2026'
 heroImage: '../../assets/blog/data-quality-as-a-product/hero.png'
 tags:
   - Data engineering
@@ -17,7 +17,7 @@ That is not data engineering. That is data maintenance.
 
 For important datasets, quality should be designed as a product contract. The dataset has consumers, expectations, failure modes, owners, and release criteria. If those things are not explicit, the pipeline may be running, but the data product is not engineered.
 
-## The Difference Between A Job And A Product
+## The Difference Between a Job and a Product
 
 A job has a schedule. A product has a contract.
 
@@ -102,7 +102,7 @@ const paymentsContract: DataContract = {
 
 The exact representation can be YAML, JSON, Python, or database metadata. The important part is that the contract is explicit enough to generate checks, documentation, and ownership.
 
-## Validation Should Exist At Multiple Boundaries
+## Validation Should Exist at Multiple Boundaries
 
 One mistake I see often is putting all validation at the end of the pipeline. That catches failures late, after invalid data has already moved through several layers.
 
@@ -148,7 +148,7 @@ where amount <= 0;
 
 Once results are stored, quality becomes observable over time. You can trend failures, alert on regression, and prove whether a fix actually improved the dataset.
 
-## Freshness Is A Quality Dimension
+## Freshness Is a Quality Dimension
 
 Data can be correct and still be useless if it is late.
 
@@ -194,7 +194,7 @@ Without this, every incident starts with manual archaeology. Engineers query tab
 
 Good observability turns the question from "what happened?" into "what do we do next?"
 
-## Failure Handling Is Part Of The Design
+## Failure Handling Is Part of the Design
 
 A quality rule without a failure strategy is incomplete.
 
@@ -212,7 +212,7 @@ Not all failures deserve the same response. A minor optional-field null increase
 
 The important part is deciding this before the incident.
 
-## Ownership Is A Technical Requirement
+## Ownership Is a Technical Requirement
 
 Data quality problems often survive because ownership is vague.
 

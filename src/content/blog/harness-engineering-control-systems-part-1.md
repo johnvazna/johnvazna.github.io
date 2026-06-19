@@ -2,7 +2,7 @@
 title: 'Harness Engineering, Part 1'
 seoTitle: 'Harness Engineering for AI Agents, Part 1: Control Layers and Tool Contracts'
 description: 'A production AI agent needs a control layer that owns permissions, tool contracts, validation, execution, and confirmations.'
-pubDate: 'Jun 18 2026 10:00'
+pubDate: 'Apr 15 2026'
 heroImage: '../../assets/blog/harness-engineering-control-systems-part-1/hero.png'
 tags:
   - AI agents
@@ -17,7 +17,7 @@ That is why I think about agents less as "smart prompts" and more as controlled 
 
 This first part is about the control layer: what the harness owns, how tool contracts should be shaped, and why the model should reason but not execute directly.
 
-## The Problem With Agent Demos
+## The Problem with Agent Demos
 
 A demo usually has a narrow path:
 
@@ -32,7 +32,7 @@ The dangerous part is that a bad agent can look successful. It can produce fluen
 
 That means we need a different control surface.
 
-## What A Harness Owns
+## What a Harness Owns
 
 The model should not own execution. The harness should.
 
@@ -67,7 +67,7 @@ type ToolResult =
 
 This is not very different from backend engineering. We already validate API inputs, authorize operations, wrap dependencies, log execution, and protect state changes. The difference is that the caller is now a model that can synthesize parameters instead of a deterministic client.
 
-## The Boundary Between Reasoning And Execution
+## The Boundary Between Reasoning and Execution
 
 One useful rule is this: the model can reason, but the harness must execute.
 
@@ -85,7 +85,7 @@ Only after those checks should anything happen.
 
 This boundary also makes the system easier to debug. When something fails, you can inspect whether the problem was reasoning, policy, tool execution, data freshness, or output formatting. Without that separation, the failure becomes "the agent was wrong", which is not actionable.
 
-## AGENTS.md As A Small Harness
+## AGENTS.md as a Small Harness
 
 In this repository, `AGENTS.md` is a small example of a harness around an agent. It does not evaluate model quality or execute tools by itself, but it defines operational constraints:
 
@@ -157,7 +157,7 @@ async function runTool<TInput, TOutput>(
 
 This is intentionally ordinary code. The harness should be boring enough that you can trust it more than the model output.
 
-## Confirmations Are Part Of The System
+## Confirmations Are Part of the System
 
 For destructive operations, I would make confirmation part of the state machine:
 
