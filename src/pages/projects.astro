@@ -34,35 +34,13 @@ const getToolClass = (tool: string) => `tool-${tool.toLowerCase().replace(/[^a-z
 					</p>
 				</header>
 
-				<div class="projects-grid">
-					<aside class="projects-left">
-						<img src={jengaUrl} alt="Jenga tower illustration" class="jenga-img" />
-					</aside>
-
-					<div class="projects-right">
-						<ol class="index">
-							{
-								entries.map((project, i) => (
-									<li>
-										<a href={project.href}>
-											<span class="num">({String(i + 1).padStart(2, '0')})</span>
-											<h2 class="entry-title">{project.title}</h2>
-											<p class="entry-sub">{project.sub}</p>
-											{
-												project.stack?.length && (
-													<ul class="entry-tools" aria-label="Tools used">
-														{project.stack.map((item) => (
-															<li class={getToolClass(item)}>{item}</li>
-														))}
-													</ul>
-												)
-											}
-										</a>
-									</li>
-								))
-							}
-						</ol>
-					</div>
+				{/* Lista temporalmente oculta. Para restaurarla, vuelve a usar el bloque
+				    .projects-grid con entries.map(...) (el fetch sigue en el frontmatter). */}
+				<div class="projects-coming-soon">
+					<img src={jengaUrl} alt="Jenga tower illustration" class="jenga-img" />
+					<p class="coming-soon-text">
+						We're working on improving the shared projects experience.
+					</p>
 				</div>
 			</main>
 		</div>
@@ -130,6 +108,26 @@ const getToolClass = (tool: string) => `tool-${tool.toLowerCase().replace(/[^a-z
 		display: block;
 		margin-left: -8%;
 		margin-right: auto;
+	}
+	/* Estado temporal: mensaje centrado mientras se trabaja en Projects */
+	.projects-coming-soon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 2rem;
+	}
+	.projects-coming-soon .jenga-img {
+		max-width: 360px;
+		margin: 0 auto;
+	}
+	.coming-soon-text {
+		margin: 0;
+		max-width: 44ch;
+		font-family: var(--font-typewriter), ui-monospace, monospace;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: #444240;
 	}
 	.index {
 		list-style: none;
